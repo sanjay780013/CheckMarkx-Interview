@@ -14,12 +14,10 @@ from smtplib import SMTPException
 currentDir = "./"
 clocExec = ("./bin/cloc-1.90.exe")
 timestr = time.strftime("%Y%m%d%H%M%S")
-outputFile = timestr+"_"+repoName+".csv"
 repoUrl = input("Type the URL for the repository: ") #"https://github.com/sanjay780013/Listed"
 
 def gettingRepoFrmUrl():
     return(repoUrl.strip(".git").split("/")[-1])
-
 
 def checkRepoValidity():
         if not re.match(r"((git|ssh|http(s)?)|(git@[\w\.]+))(:(//)?)([\w\.@\:/\-~]+)(\.git)(\/)?", repoUrl): #https://stackoverflow.com/questions/2514859/regular-expression-for-git-repository
@@ -29,7 +27,8 @@ def checkRepoValidity():
             print(repoUrl +" is a valid URL ")
 
 def cloningRepo(): 
-    repoName = gettingRepoFrmUrl()
+    #repoName = gettingRepoFrmUrl()
+    #outputFile = timestr+"_"+repoName+".csv"
     if not os.path.exists(currentDir+repoName):
         print ("Cloning Git Repository.....")
         try:
@@ -88,7 +87,9 @@ def sendingEmail():
         except SMTPException as e:
             print('There was an error sending an email please check your password or recivers email please make sure its valid email: ', e) 
         
-    
+gettingRepoFrmUrl()
+repoName = gettingRepoFrmUrl()
+outputFile = timestr+"_"+repoName+".csv"
 checkRepoValidity()
 cloningRepo()
 sendingEmail()
