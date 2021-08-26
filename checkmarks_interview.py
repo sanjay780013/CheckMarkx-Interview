@@ -21,7 +21,8 @@ try:
 	import git
 except ImportError:
 	print('git is not installed, installing it now!')
-	install('git')
+	install('GitPython')
+	install('Git')
 	
 def gettingRepoFrmUrl():
     return(repoUrl.strip(".git").split("/")[-1])
