@@ -9,6 +9,7 @@ from email.mime.base import MIMEBase
 from email.mime.multipart import MIMEMultipart
 from email.mime.text import MIMEText
 from smtplib import SMTPException
+from pip._internal import main
 
 currentDir = "./"
 clocExec = ("./bin/cloc-1.90.exe")
