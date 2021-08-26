@@ -1,7 +1,6 @@
 import subprocess
 import os, sys
 import re
-import git
 import os
 import time
 import email, smtplib, ssl, getpass
@@ -15,7 +14,14 @@ currentDir = "./"
 clocExec = ("./bin/cloc-1.90.exe")
 timestr = time.strftime("%Y%m%d%H%M%S")
 repoUrl = input("Type the URL for the repository: ") #"https://github.com/sanjay780013/Listed"
-
+def install(package):
+	main(['install', package])
+try:
+	import git
+except ImportError:
+	print('git is not installed, installing it now!')
+	install('git')
+	
 def gettingRepoFrmUrl():
     return(repoUrl.strip(".git").split("/")[-1])
 
